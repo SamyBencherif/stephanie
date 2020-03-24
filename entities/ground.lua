@@ -30,8 +30,6 @@ function Ground:new(world, sprite, restitution, x, y, blockWidth, blockHeight)
     -- The object is fixed in place
     self.body:setType('static')
 
-    self.body:setCollisionClass('solid')
-
     -- Objects never rotate in this game
     self.body:setFixedRotation(true)
 

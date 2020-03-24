@@ -1,4 +1,5 @@
-local Entity = require "entities/entity"
+
+local Player = require "entities/player"
 
 local e = Entity()
 
