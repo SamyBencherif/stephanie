@@ -7,7 +7,7 @@ local Player = require("entities/player")
 local Prop = require("entities/prop")
 local assets = require("libraries/cargo/cargo").init("assets")
 
-local worldInitialize = require("worldInitializer")
+local GameTools = require("GameTools")
 
 local Button = Prop:extend()
 

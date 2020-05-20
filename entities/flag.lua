@@ -7,7 +7,7 @@ local Player = require("entities/player")
 local Prop = require("entities/prop")
 local assets = require("libraries/cargo/cargo").init("assets")
 
-local worldInitialize = require("worldInitializer")
+local GameTools = require("GameTools")
 
 local Flag = Prop:extend()
 
@@ -42,15 +42,18 @@ function Flag:update(dt)
     for i,body in pairs(q) do
         local ent = body:getObject()
         if ent:is(Player) then
-            while (#self.Game.entities ~= 0) do
-                -- while there are any entities remove the last one
-                -- (remove until there are no more)
-                -- ((remove all entities))
-                table.remove(self.Game.entities)
+            GameTools.destroyWorld(self.Game)
+
+            if (self.targetLevel) then
+                GameTools.initWorld(self.Game)
+                self.targetLevel(self.Game)
             end
 
-            worldInitialize(self.Game)
-            self.targetLevel(self.Game)
+            love.graphics.setCanvas(self.Game.renderLayers.transparent)
+            love.graphics.clear(0,0,0,0)
+            love.graphics.setCanvas()
+            love.graphics.clear(0,0,0,1)
+
             return
         end
     end

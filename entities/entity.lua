@@ -7,7 +7,10 @@ local assets = require("libraries/cargo/cargo").init("assets")
 
 local Entity = Object:extend()
 
-function Entity:new(world, sprite, x, y, isStatic, overDef)
+function Entity:new(Game, sprite, x, y, isStatic)
+
+    self.Game = Game
+    local world = Game.world
 
     -- notSolid objects still recieve collisions, but the player will not consider
     -- them as solid objects it can jump off of. Right now the only object it makes
@@ -15,9 +18,6 @@ function Entity:new(world, sprite, x, y, isStatic, overDef)
     -- able to jump (even while falling).
 
     -- If you need to make an object that recieves no collisions make a prop instead
-
-    -- using this to help me find old calls to Entity and remove them
-    if overDef ~= nil then fail() end
 
     -- TODO startSleeping option to prevent unwanted bouncing and blurring
 
@@ -52,7 +52,13 @@ end
 function Entity:draw(showColliders)
 
     -- love physics reports rectangle center, and we draw from top left position
-    love.graphics.draw(self.sprite, self.body:getX() - self.w/2, self.body:getY() - self.h/2)
+if self.transparent then
+        love.graphics.setCanvas(self.Game.renderLayers.transparent)
+        love.graphics.draw(self.sprite, self.body:getX() - self.w/2, self.body:getY() - self.h/2, 0)
+        love.graphics.setCanvas()
+    else
+        love.graphics.draw(self.sprite, self.body:getX() - self.w/2, self.body:getY() - self.h/2)
+    end
 
     if showColliders then
         love.graphics.rectangle( 'line', 

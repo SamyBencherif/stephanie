@@ -49,60 +49,58 @@ local assets = require("libraries/cargo/cargo").init("assets")
 
 function levelFive(Game)
     local entities = Game.entities
-    local world = Game.world
 
     -- Create the player and Entry door
     -- spawn coords rel to bottom of player
     local spawnX = 0
     local spawnY = H-B2
-    entities[#entities+1] = Prop(world, assets.smalldoor, spawnX, spawnY - B)
-    entities[#entities+1] = Player(world, spawnX+16, spawnY - 2*B, entities)
+    entities[#entities+1] = Prop(Game, assets.smalldoor, spawnX, spawnY - B)
+    entities[#entities+1] = Player(Game, spawnX+16, spawnY - 2*B, entities)
     
     -- right side
-    entities[#entities+1] = Block(world, "freq0", W-B, H-B2-2*B)
-    entities[#entities+1] = Block(world, "freq0", W-B-b, H-B2-2*B)
-    entities[#entities+1] = Block(world, "freq0", W-B-2*b, H-B2-2*B)
+    entities[#entities+1] = Block(Game, "freq0", W-B, H-B2-2*B)
+    entities[#entities+1] = Block(Game, "freq0", W-B-b, H-B2-2*B)
+    entities[#entities+1] = Block(Game, "freq0", W-B-2*b, H-B2-2*B)
 
     -- blockade #1
-    entities[#entities+1] = Block(world, "freqA", W2-B2, H-B2-2*B)
-    entities[#entities+1] = Block(world, "freqA", W2-B2, H-B2-2*B-b)
+    entities[#entities+1] = Block(Game, "freqA", W2-B2, H-B2-2*B)
+    entities[#entities+1] = Block(Game, "freqA", W2-B2, H-B2-2*B-b)
 
     -- left side
-    entities[#entities+1] = Block(world, "freq0", 2*b, H-B2-4*B)
-    entities[#entities+1] = Block(world, "freq0", b, H-B2-4*B)
-    entities[#entities+1] = Block(world, "freq0", 0, H-B2-4*B)
+    entities[#entities+1] = Block(Game, "freq0", 2*b, H-B2-4*B)
+    entities[#entities+1] = Block(Game, "freq0", b, H-B2-4*B)
+    entities[#entities+1] = Block(Game, "freq0", 0, H-B2-4*B)
 
     -- blockade #2
-    entities[#entities+1] = Block(world, "freqB", W2-B2, H-B2-3*B-b)
-    entities[#entities+1] = Block(world, "freqB", W2-B2, H-B2-3*B-2*b)
+    entities[#entities+1] = Block(Game, "freqB", W2-B2, H-B2-3*B-b)
+    entities[#entities+1] = Block(Game, "freqB", W2-B2, H-B2-3*B-2*b)
 
     -- right side
-    entities[#entities+1] = Block(world, "freq0", W-B, B)
-    entities[#entities+1] = Block(world, "freq0", W-B-b, B)
-    entities[#entities+1] = Block(world, "freq0", W-B-2*b, B)
+    entities[#entities+1] = Block(Game, "freq0", W-B, B)
+    entities[#entities+1] = Block(Game, "freq0", W-B-b, B)
+    entities[#entities+1] = Block(Game, "freq0", W-B-2*b, B)
 
     entities[#entities+1] = Flag(Game, W-B, 0, levelSix)
 end
 
 function levelFour(Game)
     local entities = Game.entities
-    local world = Game.world
 
     -- Create the player and Entry door
     -- spawn coords rel to bottom of player
     local spawnX = W2-B2
     local spawnY = H-B2
     -- Here the door and player are slightly offset
-    entities[#entities+1] = Prop(world, assets.smalldoor, spawnX-B2, spawnY - B)
-    entities[#entities+1] = Player(world, spawnX+16+B2, spawnY - 2*B, entities)
+    entities[#entities+1] = Prop(Game, assets.smalldoor, spawnX-B2, spawnY - B)
+    entities[#entities+1] = Player(Game, spawnX+16+B2, spawnY - 2*B, entities)
 
     for i=0,6 do
-        entities[#entities+1] = Block(world, "freq0", W2-B2-2*B, H-B2-B-i*b)
-        entities[#entities+1] = Block(world, "freq0", W2-B2+2*B, H-B2-B-i*b)
+        entities[#entities+1] = Block(Game, "freq0", W2-B2-2*B, H-B2-B-i*b)
+        entities[#entities+1] = Block(Game, "freq0", W2-B2+2*B, H-B2-B-i*b)
         if i % 3 == 2 then
-            entities[#entities+1] = Block(world, "freqA", W2-B2-B, H-B2-B-i*b)
-            entities[#entities+1] = Block(world, "freqA", W2-B2, H-B2-B-i*b)
-            entities[#entities+1] = Block(world, "freqA", W2-B2+B, H-B2-B-i*b)
+            entities[#entities+1] = Block(Game, "freqA", W2-B2-B, H-B2-B-i*b)
+            entities[#entities+1] = Block(Game, "freqA", W2-B2, H-B2-B-i*b)
+            entities[#entities+1] = Block(Game, "freqA", W2-B2+B, H-B2-B-i*b)
         end
     end
 
@@ -112,20 +110,19 @@ end
 function levelThree(Game)
 
     local entities = Game.entities
-    local world = Game.world
 
     -- Create the player and Entry door
     -- spawn coords rel to bottom of player
     local spawnX = 0
     local spawnY = H-B2
-    entities[#entities+1] = Prop(world, assets.smalldoor, spawnX, spawnY - B)
-    entities[#entities+1] = Player(world, spawnX+16, spawnY - 2*B, entities)
+    entities[#entities+1] = Prop(Game, assets.smalldoor, spawnX, spawnY - B)
+    entities[#entities+1] = Player(Game, spawnX+16, spawnY - 2*B, entities)
 
-    entities[#entities+1] = Block(world, "freq0", W2-B2, H-B2-2*B-b)
+    entities[#entities+1] = Block(Game, "freq0", W2-B2, H-B2-2*B-b)
 
     -- TODO crop texture so no overlap when semi-transparent
-    entities[#entities+1] = Block(world, "freqA", W2-B2, H-B2-B-b)
-    entities[#entities+1] = Block(world, "freqA", W2-B2, H-B2-B)
+    entities[#entities+1] = Block(Game, "freqA", W2-B2, H-B2-B-b)
+    entities[#entities+1] = Block(Game, "freqA", W2-B2, H-B2-B)
 
     entities[#entities+1] = Flag(Game, W-B, H-B2-B, levelFour)
 end
@@ -133,25 +130,24 @@ end
 function levelTwo(Game)
 
     local entities = Game.entities
-    local world = Game.world
 
     -- Create the player and Entry door
     -- spawn coords rel to bottom of player
     local spawnX = 0
     local spawnY = H-B2
-    entities[#entities+1] = Prop(world, assets.smalldoor, spawnX, spawnY - B)
-    entities[#entities+1] = Player(world, spawnX+16, spawnY - 2*B, entities)
+    entities[#entities+1] = Prop(Game, assets.smalldoor, spawnX, spawnY - B)
+    entities[#entities+1] = Player(Game, spawnX+16, spawnY - 2*B, entities)
 
-    entities[#entities+1] = Block(world, "freq0", W-2*B, H-B2-2*B)
+    entities[#entities+1] = Block(Game, "freq0", W-2*B, H-B2-2*B)
 
-    entities[#entities+1] = Block(world, "freq0", W-4*B, H-B2-4*B)
-    entities[#entities+1] = Block(world, "freq0", W-4*B-b, H-B2-4*B)
-    entities[#entities+1] = Block(world, "freq0", W-4*B-2*b, H-B2-4*B)
+    entities[#entities+1] = Block(Game, "freq0", W-4*B, H-B2-4*B)
+    entities[#entities+1] = Block(Game, "freq0", W-4*B-b, H-B2-4*B)
+    entities[#entities+1] = Block(Game, "freq0", W-4*B-2*b, H-B2-4*B)
 
-    entities[#entities+1] = Block(world, "freq0", W-B-b, B+b)
-    entities[#entities+1] = Block(world, "freq0", W-B, B+b)
-    entities[#entities+1] = Block(world, "freq0", W-B, B)
-    entities[#entities+1] = Block(world, "freq0", W-B, 0)
+    entities[#entities+1] = Block(Game, "freq0", W-B-b, B+b)
+    entities[#entities+1] = Block(Game, "freq0", W-B, B+b)
+    entities[#entities+1] = Block(Game, "freq0", W-B, B)
+    entities[#entities+1] = Block(Game, "freq0", W-B, 0)
 
     entities[#entities+1] = Flag(Game, W-B-b, b, levelThree)
 end
@@ -159,29 +155,28 @@ end
 function levelOne(Game)
 
     local entities = Game.entities
-    local world = Game.world
 
     -- Create a generic entity (dynamic)
-    -- entities[#entities+1] = Entity(world, assets.entity, 256 - 32, 256 - 32 - 64, 64, 64)
+    -- entities[#entities+1] = Entity(Game, assets.entity, 256 - 32, 256 - 32 - 64, 64, 64)
 
     -- Level Blocks
 
        -- stairs
        for y=1,4 do
            for x=1,(5-y) do
-               entities[#entities+1] = Block(world, "freq0", W - 1*B - x*b, H-B2-B-(y-1)*b)
+               entities[#entities+1] = Block(Game, "freq0", W - 1*B - x*b, H-B2-B-(y-1)*b)
            end
        end
 
        -- column
        for y=1,4 do
-           entities[#entities+1] = Block(world, "freq0", W - B, H-B2-B-(y-1)*b)
+           entities[#entities+1] = Block(Game, "freq0", W - B, H-B2-B-(y-1)*b)
        end
 
-    -- entities[#entities+1] = Block(world, "freq0", W-4*B, H-B2-B)
-    -- entities[#entities+1] = Block(world, "freqA", W-3*B, H-B2-2*B)
-    -- entities[#entities+1] = Block(world, "freqB", W-2*B, H-B2-3*B)
-    -- entities[#entities+1] = Block(world, "freqC", W-1*B, H-B2-4*B)
+    -- entities[#entities+1] = Block(Game, "freq0", W-4*B, H-B2-B)
+    -- entities[#entities+1] = Block(Game, "freqA", W-3*B, H-B2-2*B)
+    -- entities[#entities+1] = Block(Game, "freqB", W-2*B, H-B2-3*B)
+    -- entities[#entities+1] = Block(Game, "freqC", W-1*B, H-B2-4*B)
     
     -- Flag
     entities[#entities+1] = Flag(Game, W-B, H-B2-3*b-2*B, levelTwo)
@@ -192,8 +187,8 @@ function levelOne(Game)
     -- spawn coords rel to bottom of player
     local spawnX = 0
     local spawnY = H-B2
-    entities[#entities+1] = Prop(world, assets.smalldoor, spawnX, spawnY - B)
-    entities[#entities+1] = Player(world, spawnX+16, spawnY - 2*B, entities)
+    entities[#entities+1] = Prop(Game, assets.smalldoor, spawnX, spawnY - B)
+    entities[#entities+1] = Player(Game, spawnX+16, spawnY - 2*B, entities)
 end
 
-return {start=levelOne}
+return {start=levelFive}

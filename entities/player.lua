@@ -10,8 +10,11 @@ local Block = require("entities/block")
 
 local Player = Entity:extend()
 
-function Player:new(world, x, y, entities)
-    Entity.new(self, world, assets.player, x, y, --[[ static ]] false)
+function Player:new(Game, x, y, entities)
+
+    local world = Game.world
+
+    Entity.new(self, Game, assets.player, x, y, --[[ static ]] false)
 
     -- Make the player less bouncy than the default entity
     self.body:setRestitution(.3)
@@ -42,6 +45,9 @@ function Player:draw()
     end
 end
 
+-- TODO it appears quick LR or RL movements will shoot the player out when it should
+-- work more like brakes
+
 function Player:input(Joystick)
 
     -- Shorted labels for convenience
@@ -70,6 +76,7 @@ function Player:input(Joystick)
     -- a button press that matches the current direction
 
     if maxWalkRatio > 1 then maxWalkRatio = 1 end
+    if maxWalkRatio < -1 then maxWalkRatio = -1 end
 
     if (Joystick and Joystick:isGamepadDown("dpright")) or love.keyboard.isDown("right") then 
 

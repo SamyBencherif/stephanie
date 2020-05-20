@@ -9,12 +9,13 @@ local Entity = require("entities/entity")
 
 local Block = Entity:extend()
 
-function Block:new(world, class, x, y)
+function Block:new(Game, class, x, y)
 
     -- class specifies the core game mechanic, collision layers
     -- (referred to in-game as resontant frequencies)
     -- there are three resonant frequencies "freqA", "freqB", and "freqC"
     -- there is also "freq0" which collides with everything
+    local world = Game.world
 
     local tex
 
@@ -28,7 +29,7 @@ function Block:new(world, class, x, y)
         tex = assets.smallblock
     end
 
-    Entity.new(self, world, tex, x, y, true)
+    Entity.new(self, Game, tex, x, y, true)
     self.body:setRestitution(.015)
     self.body:setCollisionClass(class)
 
@@ -38,31 +39,7 @@ function Block:new(world, class, x, y)
 end
 
 function Block:setOpaque(o)
-    if self.class == "freqA" then
-        if o then
-            self.sprite = assets.smallblockred
-        else
-            self.sprite = assets.smallblockreddim
-        end
-    elseif self.class == "freqB" then
-        if o then
-            self.sprite = assets.smallblockblue
-        else
-            self.sprite = assets.smallblockbluedim
-        end
-    elseif self.class == "freqC" then
-        if o then
-            self.sprite = assets.smallblockyellow
-        else
-            self.sprite = assets.smallblockyellowdim
-        end
-    else
-        if o then
-            self.sprite = assets.smallblock
-        else
-            self.sprite = assets.smallblockdim
-        end
-    end
+    self.transparent = not o
 end
 
 return Block

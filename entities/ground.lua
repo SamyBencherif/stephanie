@@ -10,8 +10,9 @@ local Ground = Object:extend()
 -- TODO: I've been hardcoding tex dimensions but :getWidth/Height can be used instead
 
 -- blockWidth/Height count how many times to tile the texture
-function Ground:new(world, sprite, restitution, x, y, blockWidth, blockHeight)
+function Ground:new(Game, sprite, restitution, x, y, blockWidth, blockHeight)
 
+    local world = Game.world
     -- Ground(world, assets.grass, .2, 100, 100, 3, 1)
     -- creates rectangle (100, 100, 3*64, 64)  with restitution .2
 
